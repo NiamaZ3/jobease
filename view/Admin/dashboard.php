@@ -25,21 +25,15 @@
 
                 <ul class="sidebar_nav">
                     <li class="sidebar_item active" style="width: 100%;">
-                        <a href="?route=dashboard" class="sidebar_link"> <img src="assets/img/1. overview.svg" alt="icon">Overview</a>
+                        <a href="?route=dashboard" class="sidebar_link"> <img src="assets/img/1. overview.svg"
+                                alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="?route=Condidat" class="sidebar_link"> <img src="assets/img/agents.svg" alt="icon">Candidat</a>
+                        <a href="?route=Candidat_User" class="sidebar_link"> <img src="assets/img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="offre.php" class="sidebar_link"> <img src="assets/img/task.svg" alt="icon">Offre</a>
+                        <a href="?route=All_Offre" class="sidebar_link"> <img src="assets/img/task.svg" alt="icon">Offre</a>
                     </li>
-                    <li class="sidebar_item">
-                        <a href="contact.php" class="sidebar_link"><img src="assets/img/agent.svg" alt="icon">Contact</a>
-                    </li>
-                    <li class="sidebar_item">
-                        <a href="#" class="sidebar_link"><img src="assets/img/articles.svg" alt="icon">Articles</a>
-                    </li>
-
                 </ul>
                 <div class="line"></div>
                 <a href="#" class="sidebar_link"><img src="assets/img/settings.svg" alt="icon">Settings</a>
@@ -93,7 +87,7 @@
                             <div class="dropdown-menu dropdown-menu-end position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
-                                <a class="dropdown-item" href="/PeoplePerTask/project/pages/index.html">Log out</a>
+                                <a class="dropdown-item" href="?route=login">Log out</a>
                             </div>
                         </li>
                     </ul>
@@ -287,22 +281,8 @@
         </div>
     </div>
               
-                <!-- select input -->
-                <div class="mb-4">
-                    <label class="form-label">Status</label>
-                        <select class="form-control" name="task status" id="status">
-                            <option value="assets/img/default.svg">Default</option>
-                            <option value="assets/img/successnew.svg">New</option>
-                            <option value="assets/img/warning.svg">Urgent</option>
-                        </select>
-                </div>
-                <div class="d-flex w-100 justify-content-center">
-                <button type="submit" name="submit" class="btn btn-success btn-block mb-4 me-4 save">Save Edit</button>
-                <div class="btn btn-danger btn-block mb-4 annuler">Annuler</div>
-                </div>
-              </form>
-                
-        </div>
+  
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

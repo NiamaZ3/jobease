@@ -26,8 +26,7 @@ class AuthModels{
                 
                     if($role == 1)
                     {
-                        session_start();
-                  
+                        session_start();                  
                         $_SESSION['id_user'] = $row['id'];
                         
                         return 'admin';
@@ -37,7 +36,7 @@ class AuthModels{
                     else if($role == 2)
                     {
                         session_start();
-                        $_SESSION['id_user'] = $row['id'];  
+                        $_SESSION['id_user'] = $row['id']; 
                         
                         return 'condidat';
                         
@@ -51,6 +50,27 @@ class AuthModels{
              } else {
                      return 2;
                 } 
+            }
+
+
+            public function SignUp($name, $email, $pass) {
+                $connexion = Database::getInstance();
+                $conn = $connexion->getConnection();
+        
+                $sqlCheck = "SELECT * FROM `user` WHERE `email` = '$email'";
+                $result = $conn->query($sqlCheck);
+        
+                if ($result && $result->num_rows > 0) {
+                    return 0; 
+                } else {
+                    $sql = "INSERT INTO user (name, email, password , role_id) VALUES ('$name', '$email', '$pass' ,2 )";
+                    if ($conn->query($sql) === TRUE) {
+                        return 1; 
+                    } 
+                    else{
+                        return -1;
+                    }
+                }
             }
     }
 

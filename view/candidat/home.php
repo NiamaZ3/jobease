@@ -1,12 +1,3 @@
-<?php
-
-use App\Models\Database;
-
-$connexion = Database::getInstance();
-$conn = $connexion->getConnection();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +46,7 @@ $conn = $connexion->getConnection();
                             <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="?route=notification">Notification</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -72,7 +63,7 @@ $conn = $connexion->getConnection();
                             <a class="nav-link" href="#">EN</a>
                         </span>
                         <li class="nav-item">
-                            <a class="nav-link" href="?route=login">Login</a>
+                            <a class="nav-link" href="?route=login">LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -83,12 +74,11 @@ $conn = $connexion->getConnection();
 
 
 
-    <section action="#" method="get" class="search">
+    <section class="search">
         <h2>Find Your Dream Job</h2>
-        <form class="form-inline" action="search.php" >
+        <form class="form-inline" method="POST" action="?route=home_candidat" >
             <div class="form-group mb-2">
-               <input type="text" name="keywords" placeholder="search" >
-                
+               <input type="text" name="title" placeholder="search" >
             </div>
             <!-- <div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="location" placeholder="Location">
@@ -96,7 +86,7 @@ $conn = $connexion->getConnection();
 			<div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="company" placeholder="Company">
 			</div> -->
-            <button type="submit" class="btn btn-primary mb-2">Search</button>
+            <button type="submit" name="submit" class="btn btn-primary mb-2">Search</button>
         </form>
     </section>
 
@@ -107,8 +97,7 @@ $conn = $connexion->getConnection();
 
             <?php 
 
-				$sql = "SELECT * FROM `offre`";
-				$result = mysqli_query( $conn, $sql );
+				
 				while($row = mysqli_fetch_assoc($result)){?>
 
             <article class="postcard light yellow">
@@ -128,7 +117,7 @@ $conn = $connexion->getConnection();
                         <li class="tag__item"><i class="fas fa-tag mr-2"></i><?php echo $row['company'] ?></li>
                         <li class="tag__item"><i class="fas fa-clock mr-2"></i> 3 mins.</li>
                         <li class="tag__item play yellow">
-                            <a href="?route=login"><i class="fas fa-play mr-2"></i>APPLY
+                            <a href="?route=home_candidat&id_offre=<?= $row['id_offre'] ?>"><i class="fas fa-play mr-2"></i>APPLY
                                 NOW</a>
                         </li>
                     </ul>

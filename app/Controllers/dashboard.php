@@ -31,8 +31,7 @@ class Dashboard{
                 } else {
                     echo"test 2";
                 }
-
-                    // if($result == 0){
+                // if($result == 0){
 
                     //     header("Location:add_page.php?msg=error");
                     // }
@@ -43,14 +42,10 @@ class Dashboard{
                     // else {
                     //     echo"kknnn";
                     // }
-
-            }
+}
             else{
                 echo"EROOR";
             }
-            }
-
+     }
 }
-
-
 ?>

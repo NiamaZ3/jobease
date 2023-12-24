@@ -1,11 +1,3 @@
-<?php
-
-use App\Models\Database;
-
-$connexion = Database::getInstance();
-$conn = $connexion->getConnection();
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +44,10 @@ $conn = $connexion->getConnection();
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="?route=home_candidat">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="?route=notification">Notification</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -72,7 +64,7 @@ $conn = $connexion->getConnection();
                             <a class="nav-link" href="#">EN</a>
                         </span>
                         <li class="nav-item">
-                            <a class="nav-link" href="?route=login">Login</a>
+                        <a class="nav-link" href="?route=login">LogOut</a>
                         </li>
                     </ul>
                 </div>
@@ -81,64 +73,44 @@ $conn = $connexion->getConnection();
     </header>
 
 
-
-
-    <section action="#" method="get" class="search">
-        <h2>Find Your Dream Job</h2>
-        <form class="form-inline" action="search.php" >
-            <div class="form-group mb-2">
-               <input type="text" name="keywords" placeholder="search" >
-                
-            </div>
-            <!-- <div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="location" placeholder="Location">
-			</div>
-			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="company" placeholder="Company">
-			</div> -->
-            <button type="submit" class="btn btn-primary mb-2">Search</button>
-        </form>
-    </section>
-
     <!--------------------------  card  --------------------->
     <section class="light">
-        <h2 class="text-center py-3">Latest Job Listings</h2>
+        <h2 class="text-center py-3">Notification</h2>
         <div class="container py-2">
+    
 
-            <?php 
+    <?php while($row = $result->fetch_assoc()){ ?>
+        <div class="card" style="margin-bottom:30px;">
+               <?php if($row["approved"] == 1) {?>
+                <h5 class="card-header" style="background:green; color : white" >Accepter</h5>
+                <?php }
+                 else if($row["approved"] == -1){ ?>
 
-				$sql = "SELECT * FROM `offre`";
-				$result = mysqli_query( $conn, $sql );
-				while($row = mysqli_fetch_assoc($result)){?>
+                        <h5 class="card-header" style="background:red; color : white" >Refuser</h5>            
+                <?php
+                 }else{
+                 ?>
+                     <h5 class="card-header" style="background:gray; color : white" >Aucun Status</h5>            
 
-            <article class="postcard light yellow">
-                <a class="postcard__img_link" href="#">
-                    <img class="postcard__img" src="uploads/<?php echo $row['image'] ?>" alt="Image Title" />
-                </a>
-                <div class="postcard__text t-dark">
-                    <h3 class="postcard__title yellow"><a href="#"><?php echo $row['title'] ?></a></h3>
-                    <div class="postcard__subtitle small">
-                        <time datetime="2020-05-25 12:00:00">
-                            <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2023
-                        </time>
-                    </div>
-                    <div class="postcard__bar"></div>
-                    <div class="postcard__preview-txt"><?php echo $row['description'] ?></div>
-                    <ul class="postcard__tagbox">
-                        <li class="tag__item"><i class="fas fa-tag mr-2"></i><?php echo $row['company'] ?></li>
-                        <li class="tag__item"><i class="fas fa-clock mr-2"></i> 3 mins.</li>
-                        <li class="tag__item play yellow">
-                            <a href="?route=login"><i class="fas fa-play mr-2"></i>APPLY
-                                NOW</a>
-                        </li>
-                    </ul>
+                <?php 
+                }
+                ?>
+                <!-- <h5 class="card-header">Refuser</h5> -->
+                <div class="card-body">
+                    <h5 class="card-title"><?= $row['title'] ?></h5>
+                    <p class="card-text"><?= $row['dscr'] ?></p>
                 </div>
-            </article>
+         </div>
+        
+         <?php
+        }
+         ?>
 
-            <?php
-				}
-				?>
+        
+           
         </div>
+
+        
     </section>
 
 
